@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Регистрация{% endblock title %}
+
+{% block main_block %}
+  <div class="form-section">
+    <h2>Регистрация</h2>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Зарегистрироваться</button>
+    </form>
+    <hr>
+    Уже зарегистрированы? <a href="{% url 'user' %}">Войти в личный кабинет</a>
+  </div>
+{% endblock main_block %}
+
+{% block aside_block %}
+  <h3><b>10 лучших книг по программированию</b></h3>
+  <img src="https://itproger.com/img/news/1487168862.jpg" class="aside-image">
+  <p>Книги по программированию это достаточно сложный материал, который не так уж просто читать. Поэтому чтобы получить максимальную пользу из книг по программированию необходимо выбирать правильных авторов и правильные книги.</p>
+  <a href="https://itproger.com/news/18" target="_blank">
+    <button class="btn btn-warning">Посмотреть</button>
+  </a>
+{% endblock aside_block %}

@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Войти{% endblock title %}
+
+{% block main_block %}
+  <div class="form-section">
+    <h2>Авторизация на сайте</h2>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Войти</button>
+    </form>
+    <hr>
+    <a href="{% url 'reg' %}" class=""><button type="button" class="">Регистрация</button></a>
+  </div>
+{% endblock main_block %}

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{% endblock title %}</title>
+  <link rel="stylesheet" href="{% static 'main/main.css' %}">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+</head>
+<body>
+  <div class="main-body">
+    <nav>
+      <div class="container">
+        <a class="logo" href="{% url 'home' %}">CutTheLink</a>
+        <div class="nav-items">
+          <a class="nav-link" href="{% url 'home' %}">Главная</a>
+          <a class="nav-link" href="{% url 'add-link' %}">Добавить ссылку</a>
+          <a class="nav-link" href="{% url 'about' %}">Про нас</a>
+          {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'profile' %}">Личный кабинет</a>
+            <a class="nav-link" href="{% url 'exit' %}">Выйти</a>
+          {% else %}
+            <a class="nav-link" href="{% url 'user' %}">Войти</a>
+            <a class="nav-link" href="{% url 'reg' %}">Регистрация</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="container">
+        <div class="content">
+          {% if messages %}
+            {% for mess in messages %}
+              <div class="notification">
+                {{ mess }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          
+          {% block main_block %}
+          {% endblock main_block %}
+        </div>
+
+        <aside>
+          <div class="aside-poster">
+            {% if advert_links %}
+              <div class="advert-section">
+                <h3><b>Последние взятые ссылки:</b></h3>
+                <ul>
+                {% for el in advert_links %}
+                  <li><a href="{{ el.long }}" title="{{ el.long }}">{{ el.short }}</a></li>
+                {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Всем права защищены ©</p>
+      <div class="social">
+        <a target="_blank" href="https://vk.com/"><i class='fa fa-vk'></i></a>
+        <a target="_blank" href="https://youtube.com/"><i class='fa fa-youtube'></i></a>
+        <a target="_blank" href="https://telegram.org/"><i class='fa fa-telegram'></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

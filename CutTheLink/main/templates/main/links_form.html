@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Мои ссылки{% endblock title %}
+
+{% block main_block %}
+  <div class="form-section">
+    <h2>Добавление ссылок</h2>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Добавить ссылку</button>
+    </form>
+  </div>
+  {% for el in links %}
+  <div class="links-section">
+    <div class="link-block">
+      <h3>{{ el.title }} :</h3>
+      <h3><a href="{{ el.long }}" title="{{ el.long }}">{{ host }}link/{{ el.short }}</a></h3>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock main_block %}

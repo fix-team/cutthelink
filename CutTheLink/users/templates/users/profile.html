@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Кабинет пользователя{% endblock %}
+
+{% block main_block %}
+  <div class="form-section">
+    <h2>Кабинет пользователя</h2>
+    <div class="userdata">
+      <strong class="userdata-field">@{{ user.username }}</strong>
+      {% if user.email %}
+        <div class="userdata-field">
+          <b>Email:</b> {{ user.email }}
+        </div>
+      {% endif %}
+      <a href="{% url 'exit' %}"><button type="submit">Выйти</button></a>
+    </div>
+    <form method="post" enctype="multipart/form-data" class="form-register mt-4">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Обновить данные</button>
+    </form>
+  </div>
+{% endblock main_block %}

@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Ошибка ссылки{% endblock title %}
+
+{% block main_block %}
+  <div class="form-section">
+    <h2>Такой ссылки не существует</h2>
+    <a href="{% url 'home' %}"><button type="submit">На главную</button></a>
+  </div>
+{% endblock main_block %}
